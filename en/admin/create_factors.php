@@ -21,6 +21,11 @@ else {
         //add a factor and description
         $("#addButton").click(function () {
 
+            if (counter > 10) {
+                alert("Only 10 textboxes allow");
+                return false;
+            }
+
             var newTextBoxDiv = $(document.createElement('div'))
                     .attr("id", 'TextBoxDiv' + counter);
 
@@ -97,12 +102,12 @@ else {
 </script>
 
 <!--CONTENT-->
-<h2>Δημιουργήστε Παράγοντες <img src="../../images/information.png" title="In case of wrong input, complete the research and then please visit the edit page"/></h2>
+<h2>Create factors <img src="../../images/information.png" title="In case of wrong input, please complete the research and then visit the edit page"/></h2>
 
 <form method="post" id="myForm" action="create_factorsdb.php">
 
     <?php
-    $query = "SELECT * FROM criteria where r_id={$_SESSION['research_id']} and sub_criteria=0 ORDER BY criterion_id;";
+    $query = "SELECT * FROM criteria where r_id={$_SESSION['research_id']} and sub_criteria=1 ORDER BY criterion_id;";
     $result = mysqli_query($db_conx, $query);
     $count = 1;
     if (mysqli_num_rows($result) > 0) {
@@ -133,7 +138,7 @@ else {
 
     <br/>
 
-    <a href="#!" style="margin-left:280px;" class="button icon approve" onclick="disableBeforeUnload();" type="button" value='Υποβολή' id='addButton'>Submit </a>
+    <a href="#!" style="margin-left:280px;" class="button icon approve" onclick="disableBeforeUnload();" type="button" value='Submit' id='addButton'>Submit </a>
 </form>
 
 <br/><br/>

@@ -36,7 +36,7 @@ while (isset($_POST['textbox' . $count])) {
     $criteria_name = rtrim($_POST['textbox'.$count]);
     $criteria_description = rtrim($_POST['description'.$count]);
 
-    $sql = "INSERT INTO criteria VALUES (0,$research_id,'$criteria_name','$criteria_description',0)";
+    $sql = "INSERT INTO criteria VALUES (0,$research_id,'$criteria_name','$criteria_description',1)";
     $result = mysqli_query($db_conx, $sql) or trigger_error("Query Failed! SQL: $sql - Error: ".mysqli_error($db_conx), E_USER_ERROR);
 
     $count++;
