@@ -18,7 +18,12 @@ if (!isset($_SESSION['research_id'])) {
     $(function () {
         //add a factor and description
         $("#addButton").click(function () {
-            
+
+            if (counter > 10) {
+                alert("Only 10 textboxes allow");
+                return false;
+            }
+
             var newTextBoxDiv = $(document.createElement('div'))
                     .attr("id", 'TextBoxDiv' + counter);
 
@@ -98,7 +103,7 @@ if (!isset($_SESSION['research_id'])) {
 </script>
 
 <!--CONTENT-->
-<h2>Δημιουργήστε Εναλλακτικές <img src="../../images/information.png" title="In case of wrong input, complete the research and then please visit the edit page"/></h2>
+<h2>Create technologies to evaluate <img src="../../images/information.png" title="In case of wrong input, please complete the research and then visit the edit page"/></h2>
 
     <?php
 include_once "../../dbcon.php";
@@ -112,7 +117,7 @@ if (mysqli_num_rows($result) == 0) {
     die('Error: ' . mysqli_error($db_conx));
 } else if (mysqli_num_rows($result) > 0) {
     $row = mysqli_fetch_array($result);
-    echo "<h3>Enter technologies for research: <br/><br/><label style='color: red;'>" . $row['rname'] . "</h3>"; 
+    echo "<h3>Enter technologies for the following research: <br/><br/><label style='color: red;'>" . $row['rname'] . "</h3>"; 
 }
 ?>
 
@@ -132,7 +137,7 @@ if (mysqli_num_rows($result) == 0) {
     </div>
     <a class="button icon add" style="margin-top: 10px;" id='addButton'>Add </a>
     <a class="button icon remove" id='removeButton'>Remove </a>
-    <a href="#!" class="button icon approve" onclick="disableBeforeUnload();" type="button" value='Υποβολή' id='addButton'>Submit </a>
+    <a href="#!" class="button icon approve" onclick="disableBeforeUnload();" type="button" value='Submit' id='addButton'>Submit </a>
 
     <br/>
 
