@@ -11,8 +11,6 @@ $research_id = $_SESSION['research_id'];
 $date2 = date('Y/m/d H:i:s', strtotime('+1 hours'));
 $description1 = "Please rate the criteria, one compared to the other";
 
-
-
 while (isset($_POST['textbox' . $count])) {
 
     if ($_POST['textbox' . $count] == '') {
@@ -35,16 +33,12 @@ while (isset($_POST['textbox' . $count])) {
         echo "<script>e.preventDefault();</script>";
     }
 
-    $sql = "INSERT INTO criteria VALUES (0,$research_id,'" . $_POST['textbox' . $count] . "','" . $_POST['description' . $count] . "',0)";
+    $criteria_name =rtrim($_POST['textbox'.$count]);
+    $criteria_description =rtrim($_POST['description'.$count]);
 
-    if (!mysqli_query($db_conx, $sql)) {
-        mysqli_rollback($db_conx);
-        $_SESSION['error'] = 'all ok';
-        echo "<meta charset='utf-8'>";
-        $message = "Wrong input, please check again your data!";
-        echo "<script type='text/javascript'>alert('$message'); history.go(-1);</script>";
-        die('Error: 1' . mysqli_error($db_conx));
-    }
+    $sql = "INSERT INTO criteria VALUES (0,$research_id,'$critera_name','$criteria_description',0)";
+    $result = mysqli_query($db_conx, $sql) or trigger_error("Query Failed! SQL: $sql - Error: ".mysqli_error($db_conx), E_USER_ERROR);
+
     $count++;
 }
 
@@ -54,17 +48,8 @@ $select = "SELECT * from quest where type=1 and r_id=$research_id and sub=0";
 $results = mysqli_query($db_conx, $select);
 if (mysqli_num_rows($results) == 0) {
     $query1 = "INSERT INTO quest VALUES (0,$research_id, 'Pairwise Comparison of Criteria', '$date2','$description1',null,1,0,0)";
-    if (!mysqli_query($db_conx, $query1)) {
-        mysqli_rollback($db_conx);
-        $_SESSION['error'] = 'all ok';
-        echo "<meta charset='utf-8'>";
-        $message = "Creating Pairwise Comparison of criteria failed. Servers are down. Error: 1";
-        echo "<script type='text/javascript'>alert('$message');";
-        echo "<script>history.go(-1);</script>";
-        return false;
-        echo "<script>e.preventDefault();</script>";
-        die('Error: 2 ' . mysqli_error($db_conx));
-    }
+    $result = mysqli_query($db_conx, $query1) or trigger_error("Query Failed! SQL: $query1 - Error: ".mysqli_error($db_conx), E_USER_ERROR);
+
 } else if (mysqli_num_rows($results) > 0) {
     echo "<meta charset='utf-8'>";
     $message1 = "You can't add more criteria to this research! Please delete and start over.";
@@ -78,17 +63,7 @@ $query2 = "SELECT * FROM criteria where r_id=$research_id";
 $result = mysqli_query($db_conx, $query2);
 while ($row = mysqli_fetch_array($result)) {
     $sql1 = "INSERT INTO quest_criteria VALUES ( $quest_id," . $row['criterion_id'] . ",$research_id, 0)";
-    if (!mysqli_query($db_conx, $sql1)) {
-        mysqli_rollback($db_conx);
-        $_SESSION['error'] = 'all ok';
-        echo "<meta charset='utf-8'>";
-        $message = "Setting criteria to questionnaire failed";
-        echo "<script type='text/javascript'>alert('$message');";
-        echo "<script>history.go(-1);</script>";
-        return false;
-        echo "<script>e.preventDefault();</script>";
-        die('Error: ' . mysqli_error($db_conx));
-    }
+    $result = mysqli_query($db_conx, $sql1) or trigger_error("Query Failed! SQL: $sql1 - Error: ".mysqli_error($db_conx), E_USER_ERROR);
 }
 
 $sql = "SELECT * from quest_criteria where q_id=$quest_id order by c_id ASC";
@@ -106,22 +81,13 @@ while ($row1 = mysqli_fetch_array($result1)) {
                 $result4 = mysqli_query($db_conx, $sql4);
                 if (mysqli_num_rows($result4) == 0) {
                     $sql5 = "INSERT into quest1 values ($quest_id," . $row1['c_id'] . "," . $row2['c_id'] . ",$research_id,'','',0);";
-                    if (!mysqli_query($db_conx, $sql5)) {
-                        mysqli_rollback($db_conx);
-                        $_SESSION['error'] = 'all ok';
-                        echo "<meta charset='utf-8'>";
-                        $message = "Creating Pairwise Comparison of Criteria failed. Servers are down. Error: 2";
-                        echo "<script type='text/javascript'>alert('$message');";
-                        echo "<script>history.go(-1);</script>";
-                        return false;
-                        echo "<script>e.preventDefault();</script>";
-                        die('Error: 2 ' . mysqli_error($db_conx));
-                    }
+                    $result = mysqli_query($db_conx, $sql5) or trigger_error("Query Failed! SQL: $sql5 - Error: ".mysqli_error($db_conx), E_USER_ERROR);
                 }
             }
         }
     }
 }
+
 mysqli_commit($db_conx);
 mysqli_close($db_conx);
 echo "<meta charset='utf-8'>";
