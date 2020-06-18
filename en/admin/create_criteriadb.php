@@ -33,10 +33,10 @@ while (isset($_POST['textbox' . $count])) {
         echo "<script>e.preventDefault();</script>";
     }
 
-    $criteria_name =rtrim($_POST['textbox'.$count]);
-    $criteria_description =rtrim($_POST['description'.$count]);
+    $criteria_name = rtrim($_POST['textbox'.$count]);
+    $criteria_description = rtrim($_POST['description'.$count]);
 
-    $sql = "INSERT INTO criteria VALUES (0,$research_id,'$critera_name','$criteria_description',0)";
+    $sql = "INSERT INTO criteria VALUES (0,$research_id,'$criteria_name','$criteria_description',0)";
     $result = mysqli_query($db_conx, $sql) or trigger_error("Query Failed! SQL: $sql - Error: ".mysqli_error($db_conx), E_USER_ERROR);
 
     $count++;
@@ -65,7 +65,7 @@ while ($row = mysqli_fetch_array($result)) {
     $sql1 = "INSERT INTO quest_criteria VALUES ( $quest_id," . $row['criterion_id'] . ",$research_id, 0)";
     $result = mysqli_query($db_conx, $sql1) or trigger_error("Query Failed! SQL: $sql1 - Error: ".mysqli_error($db_conx), E_USER_ERROR);
 }
-
+/*
 $sql = "SELECT * from quest_criteria where q_id=$quest_id order by c_id ASC";
 $sql2 = "SELECT * from quest_criteria where q_id=$quest_id order by c_id ASC";
 $result1 = mysqli_query($db_conx, $sql);
@@ -87,7 +87,7 @@ while ($row1 = mysqli_fetch_array($result1)) {
         }
     }
 }
-
+*/
 mysqli_commit($db_conx);
 mysqli_close($db_conx);
 echo "<meta charset='utf-8'>";
