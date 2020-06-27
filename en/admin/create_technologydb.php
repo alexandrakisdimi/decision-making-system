@@ -67,6 +67,6 @@ if (mysqli_num_rows($result1) > 0) {
     mysqli_close($db_conx);
     echo "<meta charset='utf-8'>";
     $message = "Technologies created!";
-    echo "<script type='text/javascript'>alert('$message'); window.location = 'create_quest.php';</script>";
+    echo "<script type='text/javascript'>alert('$message'); window.location = 'main.php'</script>";
 }
 ?>

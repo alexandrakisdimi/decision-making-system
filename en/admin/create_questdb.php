@@ -1,18 +1,17 @@
 <?php
 include_once "../../dbcon.php";
 session_start();
-echo "<meta charset='utf-8'>";
 
 mysqli_autocommit($db_conx, FALSE);
-$quest = $_POST['quest'];
-$quest_type=$_POST['quest_type'];
-$description=$_POST['description'];
-$research_id=$_SESSION['research_id'];
-$c_id=$_POST['c_id'];
+$quest = rtrim($_POST['quest']);
+$quest_type = $_POST['quest_type'];
+$description = rtrim($_POST['description']);
+$research_id = $_SESSION['research_id'];
+$c_id = $_POST['c_id'];
 $date2 = date('Y/m/d H:i:s', strtotime('+1 hours'));
 
 if($quest==''){
-    $message = "Το όνομα του ερωτηματολογίου είναι κενό";
+    $message = "Questionnaires name is empty";
     echo "<script>alert('$message');</script>";
     return false;
     echo "<script>e.preventDefault();</script>";
@@ -20,7 +19,7 @@ if($quest==''){
 }
 
 if(strlen($quest)<3) {
-    $message = "Το όνομα του ερωτηματολογίου δεν μπορεί να είναι μικρότερο απο 3 χαρακτήρες";
+    $message = "The name of the questionnaire cannot be less than 3 characters";
     echo "<script>alert('$message');</script>";
     return false;
     echo "<script>e.preventDefault();</script>";
@@ -28,7 +27,7 @@ if(strlen($quest)<3) {
 }
 
 if($description==''){
-    $message = "Η περιγραφή του ερωτηματολογίου είναι κενή";
+    $message = "Questionnaire's description is empty";
     echo "<script>alert('$message');</script>";
     return false;
     echo "<script>e.preventDefault();</script>";
@@ -36,7 +35,7 @@ if($description==''){
 }
 
 if(strlen($description)<3) {
-    $message = "Η περιγραφή του ερωτηματολογίου δεν μπορεί να είναι μικρότερη απο 10 χαρακτήρες";
+    $message = "The desctiption of the questionnaire cannot be less than 10 characters";
     echo "<script>alert('$message');</script>";
     return false;
     echo "<script>e.preventDefault();</script>";
@@ -44,7 +43,7 @@ if(strlen($description)<3) {
 }
 
 if($quest_type!=2 && $quest_type!=3){
-    $message = "Δεν έχετε επιλέξει τύπο ερωτηματολογίου";
+    $message = "Please choose a questionnaire type";
     echo "<script>alert('$message');</script>";
     return false;
     echo "<script>e.preventDefault();</script>";
@@ -52,7 +51,7 @@ if($quest_type!=2 && $quest_type!=3){
 }
 
 if($c_id < 0){
-    $message = "Δεν έχετε επιλέξει κριτήριο";
+    $message = "Please choose a criterion";
     echo "<script>alert('$message');</script>";
     return false;
     echo "<script>e.preventDefault();</script>";

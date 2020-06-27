@@ -19,24 +19,24 @@ include_once "sidebar.php";
     function formCheck() {
         //check if all textfields are filled in
         if ($('#quest').val() == '') {
-            alert("Enter name");
+            alert("Enter questionnaire name");
             return false;
             e.preventDefault();
         }
 
         if ($('#quest').val().length < 3) {
-            alert("Name can't be less than 3 characters");
+            alert("Questionnaire name cannot be less than 3 characters");
             return false;
             e.preventDefault();
         }
 
         if ($('#description').val() == '') {
-            alert("Enter description");
+            alert("Enter questionnaire description");
             return false;
             e.preventDefault();
         }
         if ($('#description').val().length < 10) {
-            alert("Description can't be less than 10 characters");
+            alert("Qusetionnaire description cannot be less than 10 characters");
             return false;
             e.preventDefault();
         }
@@ -48,7 +48,7 @@ include_once "sidebar.php";
         }
 
         if ($('input[name=c_id]:checked').length <= 0) {
-            alert("Select criterion");
+            alert("Please select a criterion");
             return false;
             e.preventDefault();
         }
@@ -74,8 +74,8 @@ include_once "sidebar.php";
 
 <!--CONTENT-->
 
-<h2 style="margin-top:15px;">Create questionnaire <img src="../../images/information.png" title="In case of wrong input, complete the research and then please visit the edit page"/></h2> 
-<h3>Enter a name fot the questionnaire, a description and select type</h3>
+<h2 style="margin-top:15px;">Create a questionnaire <img src="../../images/information.png" title="In case of wrong input, please complete the research and then visit the edit page"/></h2> 
+<h3>Enter a name for the questionnaire, a description and select the type of the questionnaire</h3>
 
 
 
@@ -84,7 +84,7 @@ include_once "sidebar.php";
 <div>
     <form method="post" id="myForm" action="create_questdb.php">
         <div>
-            <label >Name: </label><br /><textarea rows="4" cols="50" onchange="enableBeforeUnload();"
+            <label >Questionnaire name: </label><br /><textarea rows="4" cols="50" onchange="enableBeforeUnload();"
                                                                     onkeyup="enableBeforeUnload();" name="quest" id="quest"></textarea> 
             <br />
         </div>
@@ -93,17 +93,17 @@ include_once "sidebar.php";
         <div>
             <label>Type:</label>
             <br/>
-            <input type="radio" name="quest_type" value=2 id="quest_type">Set
+            <input type="radio" name="quest_type" value=2 id="quest_type">Factor Pairwise comparison by date</input>
             <br/>
-            <input type="radio" name="quest_type" value=3 id="quest_type">Ανάθεση τιμών στους παράγοντες σε σύκριση με άλλα <br/>&nbsp;&nbsp;&nbsp;&nbsp;χαρακτηριστικά
+            <input type="radio" name="quest_type" value=3 id="quest_type">Factor Pairwise comparison with other factors</input>
         </div>
         <br/><br/>
-        <label >Περιγραφή ερωτηματολογίου : </label><br /><textarea onchange="enableBeforeUnload();"
+        <label >Questionnaire Description : </label><br /><textarea onchange="enableBeforeUnload();"
                                                                     onkeyup="enableBeforeUnload();" rows="10" cols="50" name="description" id="description"></textarea> 
         <br/>
         <br/>
 
-        <h3>Επιλέξτε το κριτήριο για το οποίο θα δημιουργηθεί το ερωτηματολόγιο</h3>
+        <h3>Choose the criterion that you want the questionnaire to be created</h3>
 
         <?php
         $query1 = "SELECT * from criteria where r_id=$research_id ORDER BY criterion_id ASC";
@@ -111,7 +111,7 @@ include_once "sidebar.php";
 
         echo "<table cellspacing=\"12\">";
         echo "<tr>";
-        echo "<td style='width:auto; min-width:300px;'>Όνομα Κριτηρίου</td>";
+        echo "<td style='width:auto; min-width:300px;'>Criterion: </td>";
         echo "</tr>";
         while ($row = mysqli_fetch_array($result1)) {
             echo "<tr>";
@@ -124,10 +124,10 @@ include_once "sidebar.php";
         ?>
 
 
-        <a href="#!" class="button icon arrowright" onclick="disableBeforeUnload();" type="button" value='Υποβολή' id='addButton2'>Επόμενο</a>
+        <a href="#!" class="button icon arrowright" onclick="disableBeforeUnload();" type="button" value='Submit' id='addButton2'>Next</a>
     </form>
 
-    <a href="unset.php" class="button icon approve" title="Ολοκλήρωση Έρευνας" type="button" value='Υποβολή' id='addButton2'>Τέλος</a>
+    <a href="unset.php" class="button icon approve" title="Complete Research" type="button" value='Submit' id='addButton2'>Complete Research</a>
 </div>
 
 

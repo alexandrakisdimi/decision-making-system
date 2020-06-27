@@ -1,7 +1,7 @@
 <!--HEADER-->
 <?php
 include_once "header.php";
-include_once 'dbcon.php';
+include_once "../../dbcon.php";
 ?>
 <!--SIDEBAR-->
 <?php
@@ -14,7 +14,6 @@ include_once "sidebar.php";
 
 <?php
 $date = date('Y/m/d H:i:s', strtotime('+1 hours'));
-$result = mysqli_query($db_conx, $query);
 echo '<ul>';
 $sql = "SELECT * from research where end_date>='$date'";
 $result1 = mysqli_query($db_conx, $sql);

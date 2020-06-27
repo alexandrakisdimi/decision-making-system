@@ -1,7 +1,7 @@
 <!--HEADER-->
 <?php
 include_once "header.php";
-include_once 'dbcon.php';
+include_once '../../dbcon.php';
 
 echo "<meta charset='utf-8'>";
 
@@ -42,7 +42,7 @@ echo "<h3>Research: <label style='color: red;'>" . $row['rname'] . "</h3>";
 ?>
 
 <?php
-if (!extension_loaded('lapack'))
+if (!extension_loaded('carray'))
     die('skip');
 ?>
 <!--FILE-->
@@ -104,7 +104,7 @@ while ($row1 = mysqli_fetch_array($result1)) {
                 echo "<h3>" . $row_select['sub_cr_name'] . "</h3>";
 
                 echo "<h4>EIGENVALUES </h4>";
-                $result = Lapack::eigenValues($a);
+                $result = Carray::eigenValues($a);
                 $counter = 0;
 
                 // round the result so we have a chance of matching in the face of float variance
@@ -234,7 +234,7 @@ while ($row1 = mysqli_fetch_array($result1)) {
             echo "<h2>MY ANSWERS " . $row2['qname'] . " </h2>";
 
             echo "<h4>EIGENVALUES </h4>";
-            $result = Lapack::eigenValues($a);
+            $result = Carray::eigenValues($a);
             $counter = 0;
 
             // round the result so we have a chance of matching in the face of float variance
