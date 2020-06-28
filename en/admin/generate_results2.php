@@ -10,6 +10,7 @@ mysqli_autocommit($db_conx, FALSE);
 <!--SIDEBAR-->
 <?php
 include_once "sidebar.php";
+require_once '../../vendor/autoload.php';
 ?>
 
 <?php
@@ -42,8 +43,10 @@ echo "<h3>Research: <label style='color: red;'>" . $row['rname'] . "</h3>";
 ?>
 
 <?php
-if (!extension_loaded('carray'))
-    die('skip');
+//if (!extension_loaded('carray'))
+//    die('skip');
+use MathPHP\LinearAlgebra\Matrix;
+use MathPHP\LinearAlgebra\MatrixFactory;
 ?>
 <!--FILE-->
 <?php
@@ -104,7 +107,9 @@ while ($row1 = mysqli_fetch_array($result1)) {
                 echo "<h3>" . $row_select['sub_cr_name'] . "</h3>";
 
                 echo "<h4>EIGENVALUES </h4>";
-                $result = Carray::eigenValues($a);
+                //$result = Carray::eigenValues($a);
+                $A = MatrixFactory::create($matrix);
+                $result = $A->eigenvalues();
                 $counter = 0;
 
                 // round the result so we have a chance of matching in the face of float variance
@@ -137,18 +142,20 @@ while ($row1 = mysqli_fetch_array($result1)) {
 
 
                 $rightEig = array();
-                $result = Lapack::eigenValues($a, null, $rightEig);
+                //$result = Lapack::eigenValues($a, null, $rightEig);
+                $result = $A->eigenvectors();  // Matrix of eigenvectors
                 echo "<h4>Right eigenvectors</h4>";
+                var_dump($result);
 
-                $sum = 0;
-                $vectors = '';
-                for ($i = 0; $i < $counter; $i++) {
-                    $rightEig[$i][$j][$j] = round($rightEig[$i][$j][$j], 3);
-                    echo abs($rightEig[$i][$j][$j]) . '<br/>';
-                    $vectors .= "|" . abs($rightEig[$i][$j][$j]);
-                    $sum = $sum + abs($rightEig[$i][$j][$j]);
-                }
-                echo $vectors;
+                //$sum = 0;
+                //$vectors = '';
+                //for ($i = 0; $i < $counter; $i++) {
+                //    $rightEig[$i][$j][$j] = round($rightEig[$i][$j][$j], 3);
+                //    echo abs($rightEig[$i][$j][$j]) . '<br/>';
+                //    $vectors .= "|" . abs($rightEig[$i][$j][$j]);
+                //    $sum = $sum + abs($rightEig[$i][$j][$j]);
+                //}
+                //echo $vectors;
 
                 $weights = '';
                 echo "<h4>WEIGHTS (stroggilopoiimena)</h4>";
@@ -234,8 +241,12 @@ while ($row1 = mysqli_fetch_array($result1)) {
             echo "<h2>MY ANSWERS " . $row2['qname'] . " </h2>";
 
             echo "<h4>EIGENVALUES </h4>";
-            $result = Carray::eigenValues($a);
+            //$result = Carray::eigenValues($a);
+            $A = MatrixFactory::create($a);
+            $result = $A->eigenvalues();
             $counter = 0;
+
+            echo '<pre>'; print_r($result); echo '</pre>';
 
             // round the result so we have a chance of matching in the face of float variance
             foreach ($result as $k => $r) {
@@ -244,7 +255,7 @@ while ($row1 = mysqli_fetch_array($result1)) {
                 }
                 $counter++;
             }
-            var_dump($result);
+            
 
             echo "<h4>MAX EIGENVALUE  $counter</h4>";
 
@@ -265,9 +276,10 @@ while ($row1 = mysqli_fetch_array($result1)) {
 
             echo $lmax . " - Thesi:" . $j;
 
-            $rightEig = array();
-            $result = Lapack::eigenValues($a, null, $rightEig);
-            echo "<h4>Right eigenvectors</h4>";
+                //$result = Lapack::eigenValues($a, null, $rightEig);
+                $result = $A->eigenvectors();  // Matrix of eigenvectors
+                echo "<h4>Right eigenvectors</h4>";
+                echo '<pre>'; print_r($result); echo '</pre>';
 
             $sum = 0;
             $vectors = '';
