@@ -42,7 +42,7 @@ echo "<h3>Research: <label style='color: red;'>" . $row['rname'] . "</h3>";
 ?>
 
 <?php
-if (!extension_loaded('carray'))
+if (!extension_loaded('lapack'))
     die('skip');
 ?>
 <!--FILE-->
@@ -104,7 +104,8 @@ while ($row1 = mysqli_fetch_array($result1)) {
                 echo "<h3>" . $row_select['sub_cr_name'] . "</h3>";
 
                 echo "<h4>EIGENVALUES </h4>";
-                $result = Carray::eigenValues($a);
+                $result = Lapack::eigenValues($a);
+                echo '<pre>'; print_r($result); echo '</pre>';
                 $counter = 0;
 
                 // round the result so we have a chance of matching in the face of float variance
@@ -195,21 +196,9 @@ while ($row1 = mysqli_fetch_array($result1)) {
                 unset($a);
 
                 $insert = "INSERT INTO weights_technology VALUES ($quest_id,$research_id,$u_id,$factor_id,'$weights');";
-                if (!mysqli_query($db_conx, $insert)) {
-                    mysqli_rollback($db_conx);
-                    $_SESSION['error'] = 'all ok';
-                    $message = "Extracting technology data for factor " . $row_select['sub_cr_name'] . " failed. Error 1;";
-                    echo "<script type='text/javascript'>alert('$message');</script>";
-                    die('Error: 1 ' . mysqli_error($db_conx));
-                }
+                $result = mysqli_query($db_conx, $insert) or trigger_error("Query Failed! SQL: $insert - Error: ".mysqli_error($db_conx), E_USER_ERROR);
                 $insert = "INSERT INTO eigenvalues_technology VALUES ($quest_id,$research_id,$u_id,$factor_id,$lmax,'$vectors',$CI,$RI,$CR);";
-                if (!mysqli_query($db_conx, $insert)) {
-                    mysqli_rollback($db_conx);
-                    $_SESSION['error'] = 'all ok';
-                    $message = "Extracting technology data for factor " . $row_select['sub_cr_name'] . " failed. Error 2;";
-                    echo "<script type='text/javascript'>alert('$message');</script>";
-                    die('Error: 2 ' . mysqli_error($db_conx));
-                }
+                $result = mysqli_query($db_conx, $insert) or trigger_error("Query Failed! SQL: $insert - Error: ".mysqli_error($db_conx), E_USER_ERROR);
             }
         } else {
             $sql3 = "SELECT * from quest_criteria where q_id =" . $row2['quest_id'] . " order by c_id ASC";
@@ -234,7 +223,8 @@ while ($row1 = mysqli_fetch_array($result1)) {
             echo "<h2>MY ANSWERS " . $row2['qname'] . " </h2>";
 
             echo "<h4>EIGENVALUES </h4>";
-            $result = Carray::eigenValues($a);
+            $result = Lapack::eigenValues($a);
+            echo '<pre>'; print_r($result); echo '</pre>';
             $counter = 0;
 
             // round the result so we have a chance of matching in the face of float variance
@@ -324,21 +314,11 @@ while ($row1 = mysqli_fetch_array($result1)) {
             unset($a);
 
             $insert = "INSERT INTO weights VALUES ($quest_id,$research_id,$u_id,$c_id,'$weights');";
-            if (!mysqli_query($db_conx, $insert)) {
-                mysqli_rollback($db_conx);
-                $_SESSION['error'] = 'all ok';
-                $message = "Extracting data failed. Error 1;";
-                echo "<script type='text/javascript'>alert('$message');</script>";
-                die('Error: 1 ' . mysqli_error($db_conx));
-            }
-            $insert = "INSERT INTO eigenvalues VALUES ($quest_id,$research_id,$u_id,$lmax,'$vectors',$CI,$RI,$CR);";
-            if (!mysqli_query($db_conx, $insert)) {
-                mysqli_rollback($db_conx);
-                $_SESSION['error'] = 'all ok';
-                $message = "Extracting data failed. Error 2;";
-                echo "<script type='text/javascript'>alert('$message');</script>";
-                die('Error: 2 ' . mysqli_error($db_conx));
-            }
+            $result = mysqli_query($db_conx, $insert) or trigger_error("Query Failed! SQL: $insert - Error: ".mysqli_error($db_conx), E_USER_ERROR);
+
+            $insqert = "INSERT INTO eigenvalues VALUES ($quest_id,$research_id,$u_id,$lmax,'$vectors',$CI,$RI,$CR);";
+            $result = mysqli_query($db_conx, $insqert) or trigger_error("Query Failed! SQL: $insqert - Error: ".mysqli_error($db_conx), E_USER_ERROR);
+
         }
     }
 }
