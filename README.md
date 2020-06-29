@@ -18,6 +18,18 @@ For the deployment of the application you need
 * LAPACKE library
 * lapack wrapper https://github.com/ianbarber/php-lapack
 
+## Database configuration
 
+The project include the database schema required for the application to run.
+Once the database is inserted and a database is created insert your credentials into the dbcon.php file. 
 
+```
+$db_conx = mysqli_connect("127.0.0.1", "db_user", "password", "dbname");
+```
 
+Create an admin user to access the administrative pages through mysql.
+```
+insert into users (user_id, username, password, email, fname, lname, type, validate) values (0, 'username', md5('password'), 'email', 'firstname', 'lastname', 'admin', 1);
+```
+
+```
