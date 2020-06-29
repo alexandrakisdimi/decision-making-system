@@ -6,7 +6,7 @@ echo "<meta charset='utf-8'>";
 
 mysqli_autocommit($db_conx, FALSE);
 
-$research_id = 97;
+$research_id = $_SESSION['research_id'];
 $u_id = 43;
 
 $sql = "SELECT * from technology where r_id =$research_id order by t_id ASC";

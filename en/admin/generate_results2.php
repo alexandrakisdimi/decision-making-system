@@ -329,6 +329,7 @@ while ($row1 = mysqli_fetch_array($result1)) {
 mysqli_commit($db_conx);
 mysqli_close($db_conx);
 
+header('Location: ranking.php');
 
 include_once "footer.php";
 ?>
