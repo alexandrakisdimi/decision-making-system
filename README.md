@@ -14,33 +14,20 @@ The tool's implementation demonstrates the convenience that a researcher can con
 ## Installation
 For the deployment of the application you need
 * Ubuntu Linux
-* LAMP stack
-* LAPACKE package
+* LAMP stack with php5.6
+* LAPACKE library
+* lapack wrapper https://github.com/ianbarber/php-lapack
 
-### LAMP
-LAMP is a group of open-source software that is typically installed together to enable a server to host dynamic websites and web apps. 
+## Database configuration
 
-If you have never installed a LAMP stack before, you will find this tutorial useful. 
-
-[How To Install Linux, Apache, MySQL, PHP (LAMP) stack on Ubuntu 18.04](https://www.digitalocean.com/community/tutorials/how-to-install-linux-apache-mysql-php-lamp-stack-ubuntu-18-04)
-
-### LAPACKE
-The installation of lapacke package, in order to be used with PHP, requires the lapack libraries the OS provides, subversion to pull the latest version of the package from version control, and cmake to install the package
+The project include the database schema required for the application to run.
+Once the database is inserted and a database is created insert your credentials into the dbcon.php file. 
 
 ```
-$ apt install gfortran
-$ apt install liblapack-dev
-$ apt install svn
-$ apt install cmake
+$db_conx = mysqli_connect("127.0.0.1", "db_user", "password", "dbname");
 ```
 
-We are now ready to install php lapacke
+Create an admin user to access the administrative pages through mysql.
 ```
-$ svn co https://icl.cs.utk.edu/svn/lapack-dev/lapack/trunk lapack
-$ cd lapack
-$ mkdir build
-$ cd build
-$ cmake -D BUILD_SHARED_LIBS=ON -D LAPACKE=ON ../
-$ make 
-$ sudo make install
+insert into users (user_id, username, password, email, fname, lname, type, validate) values (0, 'username', md5('password'), 'email', 'firstname', 'lastname', 'admin', 1);
 ```
