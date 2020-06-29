@@ -31,5 +31,3 @@ Create an admin user to access the administrative pages through mysql.
 ```
 insert into users (user_id, username, password, email, fname, lname, type, validate) values (0, 'username', md5('password'), 'email', 'firstname', 'lastname', 'admin', 1);
 ```
-
-```
