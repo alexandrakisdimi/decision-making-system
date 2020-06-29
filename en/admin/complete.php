@@ -25,13 +25,13 @@ if (!mysqli_query($db_conx, $sql)) {
     mysqli_rollback($db_conx);
     $_SESSION['error'] = 'all ok';
     echo "<meta charset='utf-8'>";
-    $message = "Η ολοκλήρωση της έρευνας απέτυχε. Error: 1";
+    $message = "Research failed to finilise. Error: 1";
     echo "<script type='text/javascript'>alert('$message'); window.location = 'edit_publish.php';</script>";
     die('Error: ' . mysqli_error($db_conx));
 }
 
 $_SESSION['error'] = 'all ok';
 echo "<meta charset='utf-8'>";
-$message = "Η ολοκλήρωση της έρευνας ήταν επιτυχής";
+$message = "Research is not complete.";
 echo "<script type='text/javascript'>alert('$message'); window.location = 'edit_publish.php';</script>";
 ?>

@@ -270,7 +270,7 @@ while ($row1 = mysqli_fetch_array($result1)) {
             echo $vectors;
 
             $weights = '';
-            echo "<h4>WEIGHTS (stroggilopoiimena)</h4>";
+            echo "<h4>WEIGHTS (rounded)</h4>";
             echo "Sum = " . $sum;
             for ($i = 0; $i < $counter; $i++) {
                 $w = abs($rightEig[$i][$j][$j]) / $sum;

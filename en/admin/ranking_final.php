@@ -79,12 +79,12 @@ while ($row = mysqli_fetch_array($result)) {
     }
 }
 
-echo "<h2>Προτιμότερη τεχνολογία: $name = $max </h2>";
+echo "<h2>Preferred Technology: $name = $max </h2>";
 
 
 mysqli_commit($db_conx);
 mysqli_close($db_conx);
-$message = "Τα ranking των τεχνολογιών υπολογίστηκαν επιτυχώς.";
+$message = "Technology rankings have been calculated.";
 echo $message;
 
 echo "<br/><a href='export_excel.php' style='float:right; margin-right:50px;' class='button icon arrowright'>Export</a><br/><br/>";

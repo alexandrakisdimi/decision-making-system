@@ -23,7 +23,7 @@ $select = "SELECT * from research_user where r_id = $research_id";
 $result = mysqli_query($db_conx, $select);
 if (mysqli_num_rows($result) <= 0) {
     echo "<meta charset='utf-8'>";
-    $message = "Πρέπει να επιλεξετε χρήστες, πριν την δημοσιοποίηση της έρευνας";
+    $message = "You need to choose users to answer the questionnaires before publishing the research";
     echo "<script type='text/javascript'>alert('$message'); window.location = 'select_users.php';</script>";
     die('Error: ' . mysqli_error($db_conx));
 
@@ -37,13 +37,13 @@ if (!mysqli_query($db_conx, $sql)) {
     mysqli_rollback($db_conx);
     $_SESSION['error'] = 'all ok';
     echo "<meta charset='utf-8'>";
-    $message = "Η δημοσιοποίηση του ερωτηματολογίου απέτυχε. Error: 1";
+    $message = "Publish failed";
     echo "<script type='text/javascript'>alert('$message'); window.location = 'edit_publish.php';</script>";
     die('Error: ' . mysqli_error($db_conx));
 }
 
 $_SESSION['error'] = 'all ok';
 echo "<meta charset='utf-8'>";
-$message = "Η δημοσιοποίηση της έρευνας ήταν επιτυχής";
+$message = "Publish complete";
 echo "<script type='text/javascript'>alert('$message'); window.location = 'edit_publish.php';</script>";
 ?>

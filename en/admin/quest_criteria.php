@@ -37,7 +37,7 @@ $(function(){
 		var newTextBoxDiv = $(document.createElement('div'))
 			 .attr("id", 'TextBoxDiv' + counter);
 	 
-		newTextBoxDiv.after().html('<br /><label>Χρονολογία #'+ counter + ' : </label>' +
+		newTextBoxDiv.after().html('<br /><label>Year #'+ counter + ' : </label>' +
 			  '<input type="text" onchange="enableBeforeUnload();"'+
                           'onkeyup="enableBeforeUnload();" class="textBoxes" name="textbox' + counter + 
 			  '" style="margin-left: 27px;  width: 100px;" id="textbox' + counter + '" value="" >');
@@ -50,7 +50,7 @@ $(function(){
 	 
      $("#removeButton").click(function () {
 		if(counter==1){
-			  alert("Δεν υπάρχουν άλλα πεδία για αφαίρεση");
+			  alert("No more fields to remove");
 			  return false;
 		   }   
 	 
@@ -72,20 +72,20 @@ function formCheck(){
         var all = document.getElementsByClassName("textBoxes");
         
         if ($('#description').val() == '') {
-                    alert("Δεν έχετε εισάγει οδηγίες για τα χαρακτηριστικά");
+                    alert("No instructions entered for definitions");
                     return false;
                     e.preventDefault();
                 }
                 
         if ($('#description').val().length < 10) {
-            alert("Οι οδηγίες πρέπει να έχουν τουλάχιστον 10 χαρακτήρες");
+            alert("Instructions should have at least 10 characters");
             return false;
             e.preventDefault();
         }
         
         
         for (var i=0; i<all.length; i++ ){
-           if(all[i].value==''){ alert("Δεν έχετε εισάγει το όνομα του χαρακτηριστικού #"+(i+1));
+           if(all[i].value==''){ alert("No name entered for definition #"+(i+1));
                return false; // prevent default click action from happening!
                 e.preventDefault(); // same thing as above
             }
@@ -123,9 +123,9 @@ function disableBeforeUnload() {
 
 <!----------------------CONTENT---------------------->
     
-<h2>Εισάγετε το χαρακτηριστικό με το οποίο θα βαθμολογηθούν οι <br/><br/>παράγοντες του ερωτηματολογίου</h2>
-    <h3>Έχετε επιλέξει τους παράγοντες:<br/></h3>
-    <i>*Η μονάδα μέτρησης και το πεδίο ορισμού είναι προαιρετικό για κάθε παράγοντα</i>
+<h2>Enter a definition with which the factors will be evaluated</h2>
+    <h3>Factor:<br/></h3>
+    <i>*Units and range are optional</i>
     
     
     <form id="myForm" method="post" action="quest_criteriadb.php">
@@ -141,10 +141,10 @@ function disableBeforeUnload() {
                 $result2 = mysqli_query($db_conx, $sql2);
                 $row2 =  mysqli_fetch_array($result2);
                 echo "<b style='color:royalblue;'>".$row2['sub_cr_name']."</b><br/>";
-                echo "<label>Μονάδα μέτρησης : </label>\n";
+                echo "<label>Unit : </label>\n";
                 echo "<input type=\"checkbox\" class=\"checkboxes1\" name=\"checkboxes$count\" id=\"checkboex$count\" onclick=\"enableName(this, 'unit$count');\"/>\n"; 
                 echo "<input class=\"unit\" onchange=\"enableBeforeUnload();\" onkeyup=\"enableBeforeUnload();\" style=\"width: 100px;\" name=\"unit$count\" id=\"unit$count\" type='text' disabled>\n";
-                echo "<br/><label>Πεδίο ορισμού:</label>\n"; 
+                echo "<br/><label>Range : </label>\n"; 
                 echo "<input type=\"checkbox\" class=\"checkboxes\" name=\"checkbox$count\" id=\"checkbox$count\" onclick=\"enableName(this, 'from$count');enableName(this, 'to$count');\"/>\n"; 
                 echo "<label>Από: </label><input style=\"width:30px;\" type=\"text\" id=\"from$count\"  name=\"from$count\" disabled />\n"; 
                 echo "<label>Έως: </label><input style=\"width:30px;\" type=\"text\" id=\"to$count\"  name=\"to$count\" disabled /><br/><br/>";
@@ -152,11 +152,11 @@ function disableBeforeUnload() {
             } 
         
     ?>
-    <h5>Οδηγίες για το πως ο χρήστης θα βαθμολογήσει τους παράγοντες:</h5>
+    <h5>Instructions for the user to evaluate the factors:</h5>
     <textarea rows="4" cols="50" name="description" id="description"></textarea>
     <br/>
     <br />
-    <h5>Εισάγετε την χρονολογία που επιθυμείτε</h5>
+    <h5>Please enter year</h5>
     <div  id="TextBoxesGroup">
 	<div id="TextBoxDiv1">
 	    <label>Χρονολογία #1 : </label><input class="textBoxes" onchange="enableBeforeUnload();"
@@ -172,11 +172,11 @@ function disableBeforeUnload() {
         </div>
     </div>
     
-    <a class="button icon add" style="margin-top: 10px;" id='addButton'>Προσθήκη</a>
-    <a class="button icon remove" id='removeButton'>Αφαίρεση</a>
+    <a class="button icon add" style="margin-top: 10px;" id='addButton'>Add</a>
+    <a class="button icon remove" id='removeButton'>Remove</a>
     <br/>
 	
-	<a href="#!" style="margin-left:280px;" class="button icon approve" onclick="disableBeforeUnload();" type="button" value='Υποβολή' id='addButton'>Υποβολή </a>
+	<a href="#!" style="margin-left:280px;" class="button icon approve" onclick="disableBeforeUnload();" type="button" value='Submit' id='addButton'>Submit </a>
     </form>
     
 
