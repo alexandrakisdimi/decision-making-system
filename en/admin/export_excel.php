@@ -8,7 +8,7 @@ include 'Classes/PHPExcel.php';
 include 'Classes/PHPExcel/Writer/Excel2007.php';
 session_start();
 
-$research_id = 97;
+$research_id = $_SESSION['research_id'];
 include_once '../../dbcon.php';
 
 echo "<h5>". date('H:i:s') . " Create new PHPExcel object</h5>";
