@@ -2,7 +2,7 @@
 
 session_start();
 include_once 'header.php';
-include_once 'dbcon.php';
+include_once "../../dbcon.php";
 
 echo "<meta charset='utf-8'>";
 

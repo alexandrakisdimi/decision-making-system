@@ -2,13 +2,13 @@
 
 session_start();
 include_once 'header.php';
-include_once 'dbcon.php';
+include_once '../../dbcon.php';
 
 echo "<meta charset='utf-8'>";
 
 mysqli_autocommit($db_conx, FALSE);
 
-$research_id = $_SESSION['research_id'];
+$research_id = 97;
 
 
 $u_id = $row_user['u_id'];

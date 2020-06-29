@@ -1,12 +1,12 @@
 <?php
 
-include_once 'dbcon.php';
+include_once "../../dbcon.php";
 
 echo "<meta charset='utf-8'>";
 
 mysqli_autocommit($db_conx, FALSE);
 
-$research_id = 85;
+$research_id = 97;
 $u_id = 43;
 
 $sql = "SELECT * from technology where r_id =$research_id order by t_id ASC";
@@ -60,15 +60,13 @@ while ($row = mysqli_fetch_array($result)) {
         $countCriteria++;
     }
     $count++;
+    $count++;
     echo "<br/>Final Ranking {{$row['t_id']}}: $sum <br/><br/>";
     $insert = "INSERT INTO ranking VALUES ($research_id,{$row['t_id']},$u_id,$sum);";
-    echo $insert;
-    if (!mysqli_query($db_conx, $insert)) {
-        mysqli_rollback($db_conx);
-        $_SESSION['error'] = 'all ok';
-        $message = "Extracting data failed error 1";
-        echo "<script type='text/javascript'>alert('$message');</script>";
-        die('Error: 1 ' . mysqli_error($db_conx));
+    try {
+        mysqli_query($db_conx, $insert);
+    } catch (Exception $ex) {
+
     }
 }
 
@@ -76,5 +74,6 @@ while ($row = mysqli_fetch_array($result)) {
 mysqli_commit($db_conx);
 mysqli_close($db_conx);
 $message = "Technology Rankings calculated!";
+header('Location: avg_weights.php');
 echo $message;
 ?>

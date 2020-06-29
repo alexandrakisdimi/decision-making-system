@@ -1,7 +1,7 @@
 <!--HEADER-->
 <?php
 include_once "header.php";
-include_once 'dbcon.php';
+include_once "../../dbcon.php";
 ?>
 <!--SIDEBAR-->
 <?php
@@ -64,11 +64,11 @@ function printEig($e) {
 
 
 
-$a = array(
-    array( 1,   2,  3),
-    array( 0.5,   1,  2),
-    array( 0.33,   0.5,  1),
-);
+$a = [
+    [1,3,3],
+    [1,1,2],
+    [1,2,1]
+];
 
 
 $result = Lapack::eigenValues($a);
@@ -80,14 +80,18 @@ foreach($result as $k => $r) {
 }
 var_dump($result);
 
+echo '<pre>'; print_r($result); echo '</pre>';
+
 $leftEig = array();
 $result = Lapack::eigenValues($a, $leftEig);
 echo "<br/>Left eigenvectors\n";
-printEig($leftEig);
+echo '<pre>'; print_r($leftEig); echo '</pre>';
 
 $rightEig = array();
 $result = Lapack::eigenValues($a, null, $rightEig);
 echo "<br/>Right eigenvectors\n";
+
+echo '<pre>'; print_r($rightEig); echo '</pre>';
 printEig($rightEig);
 
 ?>
