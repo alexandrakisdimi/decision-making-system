@@ -4,6 +4,7 @@ A simple decision making tool written in PHP and HTML.
 ## Table of contents
 - [Description](#description)
 - [Installation](#installation)
+- [Usage](#usage)
 
 ## Description
 Web tool to assist in complicated decision making problems, utilising the AHP methodology. This application, extensively uses algorithms in order to solve a problem, by calculating weights for each criterion, factors that represent the criteria, and the alternative solutions of a target, under the influence of a factor. This online application was implemented by using PHP & HTML, an SQL database and Lapack libraries, which are used to calculate eigenvalues and eigenvectors that help evaluating the weights for each criteria, factor and alternative.
@@ -32,11 +33,9 @@ $ sudo apt-get update
 $ sudo apt-get install libapache2-mod-php5.6 php5.6-dev php5.6 php5.6-xml php5.6-zip php5.6-mysql
 ```
 
-Once PHP is installed. Copy the `lapack/lapack.so` into `/usr/lib/php/20131226/` and edit your php.ini file to include the Lapack extension.You will also need to enable the `php_mysqli.dll`
-
+Once PHP is installed. Follow the instructions on https://github.com/ianbarber/php-lapack to install the lapack wrapper and library.
+Then, edit the php.ini file and 
 ```
-$ vi /etc/php/5.6/apache2/php.ini
-
 1. Uncomment the line
 extension=php_mysqli.dll
 
@@ -83,3 +82,27 @@ Last, create an admin user through mysql to access the administrative pages.
 ```
 insert into users (user_id, username, password, email, fname, lname, type, validate) values (0, 'username', md5('password'), 'email', 'firstname', 'lastname', 'admin', 1);
 ```
+
+## Usage
+The tool is user friendly with clear easy to follow procedures.
+
+The site is separated by user accounts and administrator accounts. 
+
+The administrator can:
+
+* Create, modify and delete researches
+* Assign users to answer a research
+* Extract research results based on the user answers.
+
+On the other hand a user can:
+* Answer an assigned research
+* View results
+
+### Administrator
+#### Creating a research
+
+The administrator will have to complete a series of simple forms for the creation of a research.
+The AHP methodology requires the research to have at least one criterion, at least one factor for each criterion and at least one alternative.
+The administrator will have to provide the name and a description for each element.
+
+
