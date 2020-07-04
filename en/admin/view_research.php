@@ -426,7 +426,7 @@ exit();
                         }
                         ?>
                         <a href="#"  onclick="document.getElementById('myForm').submit()" class="button icon approve" type="button" value='Υποβολή' id='addButton'>Save </a> 
-                        <a href="available_quests.php" class="button icon remove" type="button" value='Υποβολή' id='addButton'>Cancel </a>
+                        <a href="preview_research.php" class="button icon remove" type="button" value='Υποβολή' id='addButton'>Cancel </a>
                     </form>
                     <script>
                         var viewtable = "par_0";

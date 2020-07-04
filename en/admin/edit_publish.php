@@ -7,7 +7,9 @@ include_once "../../dbcon.php";
 
 
 
-<h2>Επεξεργαστείτε μία έρευνα ή δημοσιοποιήστε την</h2>
+<h2>Here you can edit a researh, or publish it to the users</h2>
+<h4>By clicking publish, you declare that the research is ready to be answered by the users</h4>
+<h4>Once a research is published you cannot edit it anymore</h4>
 
 <?php
 

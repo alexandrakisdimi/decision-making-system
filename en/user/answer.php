@@ -13,7 +13,7 @@ if (!isset($_SESSION['user']) || (trim($_SESSION['type']) == 'admin')) {
 ?>
 
 <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
-<title>Χαροκόπειο Πανεπιστήμιο - Τμήμα Πληροφορικής και Τηλεματικής</title>
+<title>Harokopion University - Department of informatics and Telematics</title>
 <link rel="shortcut icon" type="image/x-icon" href="../../images/favicon.ico">
 <meta name="keywords" content="singular theme, free template, web design, clean, simple, professional, CSS, HTML" />
 <meta name="description" content="Singular Theme, free CSS template from templatemo.com" />
@@ -32,17 +32,6 @@ if (!isset($_SESSION['user']) || (trim($_SESSION['type']) == 'admin')) {
 <!-- Timestamp: 1236819900 --> 
 </head> 
 <body>
-
-    <?php
-    $page = basename($_SERVER['PHP_SELF']);
-
-    echo '<li style="float:right; margin-right: 20px; margin-top: 20px;" class="menu-item menu-item-language menu-item-language-current">';
-    echo '<ul class="sub-menu submenu-languages">';
-    echo '<a href="../../en/admin/' . $page . '"> <img src="../../images/Hopstarter-Flag-Borderless-United-Kingdom.ico" width="10" height="10"/> English </a>';
-    echo '<a href="#"> <img src="../../images/Hopstarter-Flag-Borderless-Greece.ico" width="10" height="10"/> Ελληνικά </a>';
-    echo '</ul>';
-    echo '</li>'
-    ?>
 
     <style>
 
@@ -243,9 +232,8 @@ if (!isset($_SESSION['user']) || (trim($_SESSION['type']) == 'admin')) {
     <div id="templatemo_header_wrapper">
         <div id="templatemo_header">
             <div id="site_title" align="center"></div>
-            <p id="intro_text">Διαδικτυακό Σύστημα Λήψης Αποφάσεων</p>
-            <p id="intro_text">Decision Maker</p>
-            <p id="intro_text"><a href="http://www.hua.gr/index.php/el/" target="_blank">Χαροκόπειο Πανεπιστήμιο</a> - <a href="http://www.dit.hua.gr/index.php/el/" target="_blank">Τμήμα Πληροφορικής και Τηλεματικής</a></p>
+            <p id="intro_text">Online Decision Making System</p>
+            <p id="intro_text"><a href="http://www.hua.gr/index.php/el/" target="_blank">Harokopion Univesrity</a> - <a href="http://www.dit.hua.gr/index.php/el/" target="_blank">Department of Informatics and Telematics</a></p>
         </div>
     </div>
 

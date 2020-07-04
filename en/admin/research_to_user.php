@@ -4,7 +4,7 @@ include_once "../../dbcon.php";
 ?>
 
 <h2>Select research</h2>
-<h3>Researches are viewed by expiration date (Descendind)</h3>
+<h3>Researches are viewed by expiration date (Descending)</h3>
 
 <form method="post" action="select_users.php" id="myForm">
     <?php
