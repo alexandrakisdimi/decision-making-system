@@ -10,7 +10,7 @@ include_once "sidebar.php";
 
 <!--CONTENT-->
 
-<h3>Επιλέξτε την έρευνα για την οποία θέλετε να εξάγουμε αποτελέσματα</h3>
+<h3>Choose the research you want to extract results for</h3>
 
 <?php
 $date = date('Y/m/d H:i:s', strtotime('+1 hours'));

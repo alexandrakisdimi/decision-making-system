@@ -29,6 +29,7 @@ function decrypt_url($string) {
 }
 
 $research_id = decrypt_url($_GET['research_id']);
+$_SESSION['research_id']=$research_id;
 ?>
 
 
