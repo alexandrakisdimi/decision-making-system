@@ -99,10 +99,14 @@ On the other hand a user can:
 * View results
 
 ### Administrator
+The administrator can find all the possible actions in a sidebar in his main screen.
+
+![Create Research](https://octodex.github.com/images/yaktocat.png)
+
 #### Creating a research
 
 The administrator will have to complete a series of simple forms for the creation of a research.
 The AHP methodology requires the research to have at least one criterion, at least one factor for each criterion and at least one alternative.
 The administrator will have to provide the name and a description for each element.
 
-
+![Create Research](https://github.com/alexandrakisdimi/decision-making-system/raw/master/screenshots/admin_main.png)
