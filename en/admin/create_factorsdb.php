@@ -52,26 +52,26 @@ $result = mysqli_query($db_conx, $query1) or trigger_error("Query Failed! SQL: $
 $quest_id = mysqli_insert_id($db_conx);
 
 $query2 = "SELECT * FROM sub_criteria where c_id=$c_id";
-$result = mysqli_query($db_conx, $query2);
-while ($row = mysqli_fetch_array($result)) {
+$result1 = mysqli_query($db_conx, $query2);
+while ($row = mysqli_fetch_array($result1)) {
     $sql2 = "INSERT INTO quest_criteria VALUES ( $quest_id,".$row['sub_criteria_id'].",$research_id, 1)";
-    $result = mysqli_query($db_conx, $sql2) or trigger_error("Query Failed! SQL: $sql2 - Error: ".mysqli_error($db_conx), E_USER_ERROR);
+    $result2 = mysqli_query($db_conx, $sql2) or trigger_error("Query Failed! SQL: $sql2 - Error: ".mysqli_error($db_conx), E_USER_ERROR);
 }
 
 $sql = "SELECT * from quest_criteria where q_id=$quest_id order by c_id ASC";
 $sql2 = "SELECT * from quest_criteria where q_id=$quest_id order by c_id ASC";
-$result1 = mysqli_query($db_conx, $sql);
+$result3 = mysqli_query($db_conx, $sql);
 
 while ($row1 = mysqli_fetch_array($result1)) {
-    $result2 = mysqli_query($db_conx, $sql2);
-    while ($row2 = mysqli_fetch_array($result2)) {
+    $result3 = mysqli_query($db_conx, $sql2);
+    while ($row2 = mysqli_fetch_array($result3)) {
         if ($row1['c_id'] != $row2['c_id']) {
             $sql3 = "SELECT * from quest1 where c1_id=".$row1['c_id']." and c2_id=".$row2['c_id']." and q_id=$quest_id";
-            $result3 = mysqli_query($db_conx, $sql3);
-            if (mysqli_num_rows($result3) == 0) {
+            $result4 = mysqli_query($db_conx, $sql3);
+            if (mysqli_num_rows($result4) == 0) {
                 $sql4 = "SELECT * from quest1 where c1_id=".$row2['c_id']." and c2_id=".$row1['c_id']." and q_id=$quest_id";
-                $result4 = mysqli_query($db_conx, $sql4);
-                if (mysqli_num_rows($result4) == 0) {
+                $result5 = mysqli_query($db_conx, $sql4);
+                if (mysqli_num_rows($result5) == 0) {
                     $sql5 = "INSERT into quest1 values ($quest_id,".$row1['c_id'].",".$row2['c_id'].",$research_id,'','',1);";
                     $result = mysqli_query($db_conx, $sql5) or trigger_error("Query Failed! SQL: $sql5 - Error: ".mysqli_error($db_conx), E_USER_ERROR);
                 }

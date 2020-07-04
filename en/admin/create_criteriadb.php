@@ -60,10 +60,11 @@ if (mysqli_num_rows($results) == 0) {
 $quest_id = mysqli_insert_id($db_conx);
 
 $query2 = "SELECT * FROM criteria where r_id=$research_id";
-$result = mysqli_query($db_conx, $query2);
-while ($row = mysqli_fetch_array($result)) {
-    $sql1 = "INSERT INTO quest_criteria VALUES ( $quest_id," . $row['criterion_id'] . ",$research_id, 0)";
-    $result = mysqli_query($db_conx, $sql1) or trigger_error("Query Failed! SQL: $sql1 - Error: ".mysqli_error($db_conx), E_USER_ERROR);
+$result2 = mysqli_query($db_conx, $query2);
+
+while ($row2 = mysqli_fetch_array($result2)) {
+    $sql1 = "INSERT INTO quest_criteria VALUES ( $quest_id," . $row2['criterion_id'] . ",$research_id, 0)";
+    $result3 = mysqli_query($db_conx, $sql1) or trigger_error("Query Failed! SQL: $sql1 - Error: ".mysqli_error($db_conx), E_USER_ERROR);
 }
 /*
 $sql = "SELECT * from quest_criteria where q_id=$quest_id order by c_id ASC";

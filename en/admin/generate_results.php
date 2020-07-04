@@ -15,9 +15,8 @@ include_once "sidebar.php";
 <?php
 $date = date('Y/m/d H:i:s', strtotime('+1 hours'));
 echo '<ul>';
-$sql = "SELECT * from research where end_date>='$date'";
+$sql = "SELECT * from research where completed=1";
 $result1 = mysqli_query($db_conx, $sql);
-$row2 = mysqli_fetch_array($result1);
 
 function encrypt_url($string) {
     $key = "MAL_979805"; //key to encrypt and decrypts.
@@ -35,8 +34,9 @@ function encrypt_url($string) {
     return urlencode(base64_encode($result));
 }
 
-echo '<a style="{color: royalblue;} :visited{color: royalblue;}" href=generate_results2.php?research_id=' . encrypt_url($row2['research_id']) . '><h3 style="color: royalblue"><li style="list-style: square;">' . $row2['rname'] . '</li></h3>';
-
+while ($row2 = mysqli_fetch_array($result1)) { 
+   echo '<a style="{color: royalblue;} :visited{color: royalblue;}" href=generate_results2.php?research_id=' . encrypt_url($row2['research_id']) . '><h3 style="color: royalblue"><li style="list-style: square;">' . $row2['rname'] . '</li></h3>';
+}
 echo '</ul>';
 ?>  
 

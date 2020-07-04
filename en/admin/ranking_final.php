@@ -10,8 +10,6 @@ mysqli_autocommit($db_conx, FALSE);
 
 $research_id = $_SESSION['research_id'];
 
-
-$u_id = $row_user['u_id'];
 $sql = "SELECT * from technology where r_id =$research_id order by t_id ASC";
 $result = mysqli_query($db_conx, $sql);
 $count = 1;
@@ -54,7 +52,6 @@ while ($row = mysqli_fetch_array($result)) {
 
                                 $weights2 = explode("|", $rowWeights2['weight']);
                                 $sum = $sum + ($weightsTechnology[$count] * $weights[$countFactor] * $weights2[$countCriteria]);
-
                             }
                         }
                     }
@@ -72,11 +69,7 @@ while ($row = mysqli_fetch_array($result)) {
     }
     
     $insert = "INSERT INTO ranking_final VALUES ($research_id,{$row['t_id']},$sum);";
-    try {
-        mysqli_query($db_conx, $insert);
-    } catch (Exception $ex) {
-        
-    }
+    $res=mysqli_query($db_conx, $insert);
 }
 
 echo "<h2>Preferred Technology: $name = $max </h2>";

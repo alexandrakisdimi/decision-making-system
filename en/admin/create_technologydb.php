@@ -48,19 +48,18 @@ if (mysqli_num_rows($result1) > 0) {
     $quest_id = mysqli_insert_id($db_conx);
 
     $query2 = "SELECT * FROM technology where r_id=$research_id";
-    $result = mysqli_query($db_conx, $query2);
-    while ($row = mysqli_fetch_array($result)) {
+    $result2 = mysqli_query($db_conx, $query2);
+    while ($row = mysqli_fetch_array($result2)) {
         $sql2 = "INSERT INTO quest_criteria VALUES ( $quest_id," . $row['t_id'] . ",$research_id, 2)";
-        $result = mysqli_query($db_conx, $sql2) or trigger_error("Query Failed! SQL: $sql2 - Error: ".mysqli_error($db_conx), E_USER_ERROR);
+        $result22 = mysqli_query($db_conx, $sql2) or trigger_error("Query Failed! SQL: $sql2 - Error: ".mysqli_error($db_conx), E_USER_ERROR);
 
     }
 
     $query3 = "SELECT * FROM technology where r_id=$research_id";
-    $result = mysqli_query($db_conx, $query3);
-    while ($row = mysqli_fetch_array($result)) {
+    $result3 = mysqli_query($db_conx, $query3);
+    while ($row = mysqli_fetch_array($result3)) {
         $sql3 = "INSERT INTO quest_alternatives VALUES ( $quest_id," . $row['t_id'] . ",$research_id)";
-        $result = mysqli_query($db_conx, $sql3) or trigger_error("Query Failed! SQL: $sql3 - Error: ".mysqli_error($db_conx), E_USER_ERROR);
-
+        $result33 = mysqli_query($db_conx, $sql3) or trigger_error("Query Failed! SQL: $sql3 - Error: ".mysqli_error($db_conx), E_USER_ERROR);
     }
 
     mysqli_commit($db_conx);

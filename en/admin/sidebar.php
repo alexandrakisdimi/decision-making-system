@@ -11,6 +11,7 @@
                         <li><a href="preview_research.php">Preview Research</a></li>
 			<li><a href="#">Previous Researches</a></li>
                         <li><a href="generate_results.php">Extract Results</a></li>
+                        <li><a href="register.php">User Management</a></li>
                         <li><a href="logout.php">Logout</a></li>
 		</ul>
 	</div>

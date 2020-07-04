@@ -31,13 +31,6 @@ if (isset($_SESSION['type']) && trim($_SESSION['type']) == 'user') {
     </head> 
     <body> 
 
-        <li style="float:right; margin-right: 20px; margin-top: 20px;" class="menu-item menu-item-language menu-item-language-current">
-            <ul class="sub-menu submenu-languages">
-                <a href="#!"> <img src="../images/Hopstarter-Flag-Borderless-United-Kingdom.ico" width="20" height="20"/> English </a>
-                <a href="../index.php"> <img src="../images/Hopstarter-Flag-Borderless-Greece.ico" width="20" height="20"/> Ελληνικά </a>        
-            </ul>
-        </li>
-
         <div id="templatemo_header_wrapper">
             <div id="templatemo_header">
                 <div id="site_title" align="center" ></div>
@@ -108,7 +101,7 @@ if (isset($_SESSION['type']) && trim($_SESSION['type']) == 'user') {
                                         <button type="button" onclick="formCheck();">Login</button>
                                     </form>
                                     </br> 
-                                    <a href="register.php">Register</a>
+                                    <a href="./en/register.php">Register</a>
 
                                 </div>
                             </form>
@@ -191,7 +184,7 @@ if (isset($_SESSION['type']) && trim($_SESSION['type']) == 'user') {
             <div id="templatemo_footer_wrapper">
 
                 <div id="templatemo_footer">
-                    <p>Copyright © 2014 <a href="">Harokopeion University</a> - <a href="">Department of Informatics and TElematics</a> | Designed by <a href="https://www.facebook.com/dimitris.alexandrakis.73" target="_blank">Alexandrakis Dimitris</a></p>
+                    <p>Copyright © 2014 <a href="">Harokopeion University</a> - <a href="">Department of Informatics and Telematics</a> | Designed by <a href="www.linkedin.com/in/dimitrios-alexandrakis-a98392109" target="_blank">Dimitrios Alexandrakis</a></p>
                     <p>CSS by Templetemo Free CSS Teplates</p>
                 </div>
             </div>

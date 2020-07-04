@@ -40,6 +40,6 @@ mysqli_close($db_conx);
 echo "<meta charset='utf-8'>";
 $message = "Success!";
 unset($_SESSION['research_id']);
-echo "<script type='text/javascript'>alert('$message'); window.location = 'research_to_user.php';</script>";
+echo "<script type='text/javascript'>alert('$message'); window.location = './edit_publish.php';</script>";
 
 ?>

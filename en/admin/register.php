@@ -2,8 +2,8 @@
 include_once "header.php";
 ?>
 
-	<h4 style="margin-top:15px;">Create account</h4>
-	<h5>Please enter your information</h5>
+	<h4 style="margin-top:15px;">Create an administrator account</h4>
+	<h5>Please enter the following information</h5>
 
        <script>
     function formCheck(){
@@ -18,8 +18,13 @@ include_once "header.php";
         if ($('#password').val()!=$('#password2').val()) { alert("Passwords do not match"); return false; e.preventDefault();}
         var emailPattern =/^[a-zA-Z0-9._-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,4}$/;
         if (!emailPattern.test(document.getElementById("email").value)) { alert("Wrong type of email"); return false; e.preventDefault();}
-        document.getElementById('myForm').submit();
-        
+		var chkTerms = document.getElementById("terms");
+        if (!chkTerms.checked) {
+            alert("Please agree that you have acknowledged and understood the terms of creating an administrator account.");
+			return false; 
+			e.prevendDefault();
+        }
+		document.getElementById('myForm').submit();
     }    
     </script>
 
@@ -62,13 +67,13 @@ include_once "header.php";
 		</tr>
 		<tr height="10px;"></tr>
 	</table>
+    <h6>*Terms*: By creating an administrator account I acknowledge that full access rights will be granted.</h6>
+	<input type="checkbox" id="terms" name="terms" value="Terms">
+	<label for="terms"> Agree</label><br>
 	
-	<a href="#!" style="margin-top: 10px;" class="button icon approve" onclick="formCheck();" type="button" value='Εγγραφή' id='addButton2'>Register </a>
-        <a href="../index.php#login" style="margin-top: 10px;" class="button icon arrowleft">Back</a>
+	<a href="#!" style="margin-top: 10px;" class="button icon approve" onclick="formCheck();" type="button" value='Submit' id='addButton2'>Submit </a>
 	
 	</form>	
-	<br /><br /><br />
-        <a href="../index.php" class="home_btn">Home</a> 
 
 
 <?php

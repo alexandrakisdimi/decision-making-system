@@ -1,10 +1,8 @@
 <?php
-
-include_once "../dbcon.php";
-echo "<meta charset='utf-8'>";
+include_once "../../dbcon.php";
 session_start();
 
-$username = $_POST['username'];
+$username = rtrim($_POST['username']);
 $password = md5($_POST['password']);
 $password2 = md5($_POST['password2']);
 $fname = $_POST['fname'];
@@ -91,35 +89,24 @@ if (!filter_var($email, FILTER_VALIDATE_EMAIL)) {
     echo "<script>e.preventDefault();</script>";
 }
 
-$query = "SELECT * from users";
+$query = "SELECT * from users where username='$username'";
 $result = mysqli_query($db_conx, $query);
 
-while ($row = mysqli_fetch_array($result)) {
-    if ($username == $row['username']) {
-        $message = "Username already exists";
-        echo "<script>alert('$message');</script>";
-        echo "<script>history.go(-1);</script>";
-        return false;
-        echo "<script>e.preventDefault();</script>";
-    }
-
-    if ($email == $row['email']) {
-        $message = "Email already exists";
-        echo "<script>alert('$message');</script>";
-        echo "<script>history.go(-1);</script>";
-        return false;
-        echo "<script>e.preventDefault();</script>";
-    }
+if (mysqli_num_rows($result)>0) {
+    $message = "Username already exists";
+    echo "<script>alert('$message');</script>";
+    echo "<script>history.go(-1);</script>";
+    return false;
+    echo "<script>e.preventDefault();</script>";
 }
 
-
-$sql = "INSERT INTO users VALUES (0, '$username','$password','$email','$fname','$lname','user',1)";
+$sql = "INSERT INTO users VALUES (0, '$username','$password','$email','$fname','$lname','administrator',1)";
 $result = mysqli_query($db_conx, $sql) or trigger_error("Query Failed! SQL: $sql - Error: ".mysqli_error($db_conx), E_USER_ERROR);
 
 $_SESSION['error'] = 'all ok';
 mysqli_commit($db_conx);
 mysqli_close($db_conx);
-$message = "Succeed";
-echo "<script type='text/javascript'>alert('$message'); window.location = '../index.php#login';</script>";
+$message = "User Created";
+echo "<script type='text/javascript'>alert('$message'); window.location = 'main.php';</script>";
 ?>
 

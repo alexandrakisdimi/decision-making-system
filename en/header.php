@@ -20,23 +20,10 @@
 </head> 
 <body> 
 
-    <?php
-    $page = basename($_SERVER['PHP_SELF']);
-
-    echo '<li style="float:right; margin-right: 20px; margin-top: 20px;" class="menu-item menu-item-language menu-item-language-current">';
-    echo '<ul class="sub-menu submenu-languages">';
-    echo '<a href="#!"> <img src="../images/Hopstarter-Flag-Borderless-United-Kingdom.ico" width="20" height="20"/> English </a>';
-    echo '<a href="../el/' . $page . '"> <img src="../images/Hopstarter-Flag-Borderless-Greece.ico" width="20" height="20"/> Ελληνικά </a>';
-    echo '</ul>';
-    echo '</li>'
-    ?>
-
-
     <div id="templatemo_header_wrapper">
         <div id="templatemo_header">
             <div id="site_title" align="center"></div>
             <p id="intro_text">Online decision making system</p>
-            <p id="intro_text">Descision Maker</p>
             <p id="intro_text"><a href="http://www.hua.gr/index.php/el/" target="_blank">Harokopion University</a> - <a href="http://www.dit.hua.gr/index.php/en/" target="_blank">Department of Informatics and Telematics</a></p> 
         </div>
     </div>

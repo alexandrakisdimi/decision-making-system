@@ -6,7 +6,7 @@ mysqli_autocommit($db_conx, FALSE);
 $quest = rtrim($_POST['quest']);
 $quest_type = $_POST['quest_type'];
 $description = rtrim($_POST['description']);
-$research_id = $_SESSION['research_id'];
+$research_id = 98;
 $c_id = $_POST['c_id'];
 $date2 = date('Y/m/d H:i:s', strtotime('+1 hours'));
 

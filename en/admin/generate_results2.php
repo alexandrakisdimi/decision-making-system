@@ -122,6 +122,7 @@ while ($row1 = mysqli_fetch_array($result1)) {
                 for ($i = 0; $i < $counter; $i++) {
                     if ($result[$i][1] == NULL) {
                         $lmax = $result[$i][0];
+                        $j=$i;
                     }
                 }
 
@@ -196,9 +197,9 @@ while ($row1 = mysqli_fetch_array($result1)) {
                 unset($a);
 
                 $insert = "INSERT INTO weights_technology VALUES ($quest_id,$research_id,$u_id,$factor_id,'$weights');";
-                $result = mysqli_query($db_conx, $insert) or trigger_error("Query Failed! SQL: $insert - Error: ".mysqli_error($db_conx), E_USER_ERROR);
+                $res = mysqli_query($db_conx, $insert) or trigger_error("Query Failed! SQL: $insert - Error: ".mysqli_error($db_conx), E_USER_ERROR);
                 $insert = "INSERT INTO eigenvalues_technology VALUES ($quest_id,$research_id,$u_id,$factor_id,$lmax,'$vectors',$CI,$RI,$CR);";
-                $result = mysqli_query($db_conx, $insert) or trigger_error("Query Failed! SQL: $insert - Error: ".mysqli_error($db_conx), E_USER_ERROR);
+                $res = mysqli_query($db_conx, $insert) or trigger_error("Query Failed! SQL: $insert - Error: ".mysqli_error($db_conx), E_USER_ERROR);
             }
         } else {
             $sql3 = "SELECT * from quest_criteria where q_id =" . $row2['quest_id'] . " order by c_id ASC";
@@ -221,33 +222,34 @@ while ($row1 = mysqli_fetch_array($result1)) {
                 echo "<br/>";
             }
             echo "<h2>MY ANSWERS " . $row2['qname'] . " </h2>";
-
+            
+            echo '<pre>'; print_r($a); echo '</pre>';
             echo "<h4>EIGENVALUES </h4>";
-            $result = Lapack::eigenValues($a);
-            echo '<pre>'; print_r($result); echo '</pre>';
+            $eigen = Lapack::eigenValues($a);
+            echo '<pre>'; print_r($eigen); echo '</pre>';
             $counter = 0;
 
             // round the result so we have a chance of matching in the face of float variance
-            foreach ($result as $k => $r) {
+            foreach ($eigen as $k => $r) {
                 foreach ($r as $ik => $ir) {
-                    $result[$k][$ik] = round($ir, 3);
+                    $eigen[$k][$ik] = round($ir, 3);
                 }
                 $counter++;
             }
-            var_dump($result);
 
             echo "<h4>MAX EIGENVALUE  $counter</h4>";
 
             for ($i = 0; $i < $counter; $i++) {
-                if ($result[$i][1] == NULL) {
-                    $lmax = $result[$i][0];
+                if ($eigen[$i][1] == NULL) {
+                    $lmax = $eigen[$i][0];
+                    $j=$i;
                 }
             }
 
             for ($i = 0; $i < $counter; $i++) {
-                if ($result[$i][1] == NULL) {
-                    if ($lmax < $result[$i][0]) {
-                        $lmax = $result[$i][0];
+                if ($eigen[$i][1] == NULL) {
+                    if ($lmax < $eigen[$i][0]) {
+                        $lmax = $eigen[$i][0];
                         $j = $i;
                     }
                 }
@@ -256,7 +258,9 @@ while ($row1 = mysqli_fetch_array($result1)) {
             echo $lmax . " - Thesi:" . $j;
 
             $rightEig = array();
-            $result = Lapack::eigenValues($a, null, $rightEig);
+            $eigenvectors = Lapack::eigenValues($a, null, $rightEig);
+            
+            echo '<pre>'; print_r($rightEig); echo '</pre>';
             echo "<h4>Right eigenvectors</h4>";
 
             $sum = 0;
@@ -314,10 +318,10 @@ while ($row1 = mysqli_fetch_array($result1)) {
             unset($a);
 
             $insert = "INSERT INTO weights VALUES ($quest_id,$research_id,$u_id,$c_id,'$weights');";
-            $result = mysqli_query($db_conx, $insert) or trigger_error("Query Failed! SQL: $insert - Error: ".mysqli_error($db_conx), E_USER_ERROR);
+            $res = mysqli_query($db_conx, $insert) or trigger_error("Query Failed! SQL: $insert - Error: ".mysqli_error($db_conx), E_USER_ERROR);
 
             $insqert = "INSERT INTO eigenvalues VALUES ($quest_id,$research_id,$u_id,$lmax,'$vectors',$CI,$RI,$CR);";
-            $result = mysqli_query($db_conx, $insqert) or trigger_error("Query Failed! SQL: $insqert - Error: ".mysqli_error($db_conx), E_USER_ERROR);
+            $res = mysqli_query($db_conx, $insqert) or trigger_error("Query Failed! SQL: $insqert - Error: ".mysqli_error($db_conx), E_USER_ERROR);
 
         }
     }

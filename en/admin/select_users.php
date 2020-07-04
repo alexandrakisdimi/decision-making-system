@@ -4,7 +4,7 @@ include_once "../../dbcon.php";
 ?>
 
 <h2>Select users</h2>
-<form method="post" action="select_usersdb.php" id="myForm">
+<form method="post" action="./select_usersdb.php" id="myForm">
     <?php
     $research_id = $_POST['mode']; 
     $_SESSION['research_id'] = $research_id; 
@@ -21,7 +21,7 @@ include_once "../../dbcon.php";
     ?>
 
     <br />
-    <a href="#!" onclick ="document.getElementById('myForm')" style="margin-top:20px;" class="button icon approve"/>Save </a>
+    <button value="Submit" style="margin-top:20px;" class="button icon approve" type="Submit">Save </button>
 </form>
 
 

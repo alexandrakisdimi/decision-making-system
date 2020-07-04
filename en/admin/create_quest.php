@@ -2,11 +2,12 @@
 <?php
 include_once "header.php";
 include_once "../../dbcon.php";
-if (!isset($_SESSION['research_id']))
-    echo "<script>window.location='create_research.php';</script>";
-else {
-    $research_id = $_SESSION['research_id'];
-}
+//if (!isset($_SESSION['research_id']))
+//    echo "<script>window.location='create_research.php';</script>";
+//else {
+//    $research_id = $_SESSION['research_id'];
+//}
+$research_id=98;
 ?>
 
 <!--SIDEBAR-->

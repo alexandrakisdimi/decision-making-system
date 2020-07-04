@@ -32,6 +32,6 @@ if (!mysqli_query($db_conx, $sql)) {
 
 $_SESSION['error'] = 'all ok';
 echo "<meta charset='utf-8'>";
-$message = "Research is not complete.";
+$message = "Research is now completed.";
 echo "<script type='text/javascript'>alert('$message'); window.location = 'edit_publish.php';</script>";
 ?>
