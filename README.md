@@ -56,6 +56,7 @@ $ sudo chmod 777 /var/www/decision-making-system/en/admin
 Next, copy the `apache/decision-making-system.conf` into `/etc/apache2/sites-available/` folder and enable the website
 ```
 $ sudo a2ensite decision-making-system.conf
+$ sudo a2dissite 000-default.conf
 $ sudo systemctl restart apache2
 ```
 
