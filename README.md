@@ -18,16 +18,68 @@ For the deployment of the application you need
 * LAPACKE library
 * lapack wrapper https://github.com/ianbarber/php-lapack
 
+> Important Note: `php-lapack` has been found not to work with later PHP versions. Thus requiring PHP5.6 to communicate with the Lapack Math Library.
+
+### Apache and Mysql installation
+```
+$ sudo apt-get install apache2 mysql-server
+```
+
+## PHP5.6 Installation
+```
+$ sudo add-apt-repository -y ppa:ondrej/php
+$ sudo apt-get update
+$ sudo apt-get install libapache2-mod-php5.6 php5.6-dev php5.6 php5.6-xml php5.6-zip php5.6-mysql
+```
+
+Once PHP is installed. Copy the `lapack/lapack.so` into `/usr/lib/php/20131226/` and edit your php.ini file to include the Lapack extension.You will also need to enable the `php_mysqli.dll`
+
+```
+$ vi /etc/php/5.6/apache2/php.ini
+
+1. Uncomment the line
+extension=php_mysqli.dll
+
+2. Add the line 
+extension=/usr/lib/php/20131226/lapack.so
+
+```
+## Apache Configuration
+
+Copy the `decision-making-system` folder under `/var/www/`
+```
+$ sudo chown -R $USER:$USER /var/www/decision-making-system
+$ sudo chmod 777 /var/www/decision-making-system/en/admin
+```
+> Granting all permissions in the admin folder will allow the tool to be able to export the research results and save them in an excel file.
+
+Next, copy the `apache/decision-making-system.conf` into `/etc/apache2/sites-available/` folder and enable the website
+```
+$ sudo a2ensite decision-making-system.conf
+$ sudo a2dissite 000-default.conf
+$ sudo systemctl restart apache2
+```
+
 ## Database configuration
 
-The project include the database schema required for the application to run.
-Once the database is inserted and a database is created insert your credentials into the dbcon.php file. 
-
+The project includes the database schema required for the application to run. You can create your database through the `schema.sql` file.
+```
+$ sudo mysql
+mysql> CREATE DATABASE your_database;
+$ sudo mysql your_database < schema.sql
+```
+Once you create the database, you have to create a user for the application to communicate with the database. 
+```
+$ sudo mysql
+mysql> CREATE USER 'newuser'@'localhost' IDENTIFIED BY 'user_password';
+mysql> GRANT ALL PRIVILEGES ON database_name.* TO 'newuser'@'localhost';
+```
+Insert the details you created above into the `dbcon.php` file in `/var/www/decision-making-system/dbcon.php` 
 ```
 $db_conx = mysqli_connect("127.0.0.1", "db_user", "password", "dbname");
 ```
 
-Create an admin user to access the administrative pages through mysql.
+Last, create an admin user through mysql to access the administrative pages.
 ```
 insert into users (user_id, username, password, email, fname, lname, type, validate) values (0, 'username', md5('password'), 'email', 'firstname', 'lastname', 'admin', 1);
 ```
