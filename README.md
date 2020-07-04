@@ -101,12 +101,28 @@ On the other hand a user can:
 ### Administrator
 The administrator can find all the possible actions in a sidebar in his main screen.
 
-![Create Research](https://octodex.github.com/images/yaktocat.png)
+![Admin Main](https://github.com/alexandrakisdimi/decision-making-system/blob/master/screenshots/admin_main.png)
 
 #### Creating a research
 
 The administrator will have to complete a series of simple forms for the creation of a research.
 The AHP methodology requires the research to have at least one criterion, at least one factor for each criterion and at least one alternative.
 The administrator will have to provide the name and a description for each element.
+>Note: The administrator can edit the research before publishing to users, by visiting the `Edit and Publish Research` link in the sidebar
 
-![Create Research](https://github.com/alexandrakisdimi/decision-making-system/raw/master/screenshots/admin_main.png)
+![Create Research](https://github.com/alexandrakisdimi/decision-making-system/blob/master/screenshots/create_research.png)
+![Create Criteria](https://github.com/alexandrakisdimi/decision-making-system/blob/master/screenshots/create_criteria.png)
+![Create Factors](https://github.com/alexandrakisdimi/decision-making-system/blob/master/screenshots/create_factors.png)
+![Create Alternatives](https://github.com/alexandrakisdimi/decision-making-system/blob/master/screenshots/create_alternatives.png)
+
+
+When the research is created, the next step is to assign users to answer the research. This can be achieved by pressing the `Set User to Research` button in the sidebar
+
+![Assign users](https://github.com/alexandrakisdimi/decision-making-system/blob/master/screenshots/assign_to_user.png)
+
+
+Next we are ready to publish the research. By clicking publish we are letting the system know that the research is ready to receive answers. Once the research is published it cannot be edited anymore.
+
+![Publish](https://github.com/alexandrakisdimi/decision-making-system/blob/master/screenshots/publish.png)
+
+
