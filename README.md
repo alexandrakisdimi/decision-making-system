@@ -115,14 +115,29 @@ The administrator will have to provide the name and a description for each eleme
 ![Create Factors](https://github.com/alexandrakisdimi/decision-making-system/blob/master/screenshots/create_factors.png)
 ![Create Alternatives](https://github.com/alexandrakisdimi/decision-making-system/blob/master/screenshots/create_alternatives.png)
 
+#### Assigning to users and publishing for answers.
 
 When the research is created, the next step is to assign users to answer the research. This can be achieved by pressing the `Set User to Research` button in the sidebar
 
 ![Assign users](https://github.com/alexandrakisdimi/decision-making-system/blob/master/screenshots/assign_to_user.png)
 
 
-Next we are ready to publish the research. By clicking publish we are letting the system know that the research is ready to receive answers. Once the research is published it cannot be edited anymore.
+Next we are ready to publish the research. By clicking publish we are letting the system know that the research is ready to receive answers. Once the research is published it cannot be edited anymore. By default, a research is considered complete when the end date, during the creation of the research, has passed. The administrator has the possibility to complete a research prematurely by visiting the `Edit and Publish Research`. When the research is published a new button will appear that allows the administrator to complete the research.
 
 ![Publish](https://github.com/alexandrakisdimi/decision-making-system/blob/master/screenshots/publish.png)
 
+#### Generating results of completed research.
+
+When a research is complete, either by passing the end date, or manually by the administrator. We can generate results through the `Extract Results` button in the sidebar.
+This will show us a list of researches that have been completed and results have not been extracted yet.
+
+![Generate results](https://github.com/alexandrakisdimi/decision-making-system/blob/master/screenshots/generate_results.png)
+
+Clicking on the link it will start calculating the Eigenvalues and Eigenvectors for each user answer. Then based on the weights derived from the eigenvectors, a ranking of the alternatives is calculated and the final ranking is displayed on the screen.
+
+![Ranking](https://github.com/alexandrakisdimi/decision-making-system/blob/master/screenshots/rankings_of_alternatives.png)
+
+By clicking the Export button, we can get more detailed results in an Excel file.
+
+![Export](https://github.com/alexandrakisdimi/decision-making-system/blob/master/screenshots/extract_to_excel.png)
 
