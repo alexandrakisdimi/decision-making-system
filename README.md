@@ -141,3 +141,19 @@ By clicking the Export button, we can get more detailed results in an Excel file
 
 ![Export](https://github.com/alexandrakisdimi/decision-making-system/blob/master/screenshots/extract_to_excel.png)
 
+### User
+
+The user is more simplyfied than the administrator. A user is only able to answer an assigned research and display previous results. For each research a user will have instructions on how to complete his answers via a ranking system.
+
+Example answers for an assigned research below.
+
+![Answers1](https://github.com/alexandrakisdimi/decision-making-system/blob/master/screenshots/user_answer.png)
+![Answers2](https://github.com/alexandrakisdimi/decision-making-system/blob/master/screenshots/user_answer2.png)
+![Answers3](https://github.com/alexandrakisdimi/decision-making-system/blob/master/screenshots/user_answer3.png)
+![Answers4](https://github.com/alexandrakisdimi/decision-making-system/blob/master/screenshots/user_answer4.png)
+
+
+In the `Completed Researches` tab. The user will see a list of completed researches. By clicking the link he will be able to download the results of the research.
+
+![Previous Research](https://github.com/alexandrakisdimi/decision-making-system/blob/master/screenshots/previous_research.png)
+
